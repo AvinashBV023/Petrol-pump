@@ -7,6 +7,7 @@ export default function Home() {
         <Link href="/login">Login</Link>
         <Link href="/credit-sale">Credit Sale</Link>
         <Link href="/register">Register</Link>
+        <Link href="/all-credits">View All Credit Sales</Link>
     </div>
   );
 }

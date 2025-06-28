@@ -10,7 +10,7 @@ export default function Login() {
 
   async function handleLogin() {
     try {
-      const res = await axios.post('http://localhost:4000/api/login', { email, password });
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       alert('Login successful!');
       router.push('/'); // ✅ Redirect to home

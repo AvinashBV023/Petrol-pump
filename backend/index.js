@@ -67,4 +67,21 @@ app.post('/api/credit-sale', auth, async (req, res) => {
   res.json(sale);
 });
 
+app.get('/api/credit-sale', async (req, res) => {
+  try {
+    const sales = await prisma.creditSale.findMany({
+      include: {
+        createdBy: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    res.json(sales);
+  } catch (err) {
+    res.status(500).json({ error: 'Could not fetch credit sales' });
+  }
+});
+
+
 app.listen(4000, () => console.log("Backend running on http://localhost:4000"));

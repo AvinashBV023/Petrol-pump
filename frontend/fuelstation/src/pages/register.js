@@ -10,7 +10,7 @@ export default function Register() {
 
   async function handleRegister() {
     try {
-      const res = await axios.post('http://localhost:4000/api/register', {
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/register`, {
         name, email, password, role
       });
       alert("Registration successful. Now you can log in.");

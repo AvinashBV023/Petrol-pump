@@ -20,7 +20,7 @@ export default function CreditSale() {
   async function submitSale() {
     const token = localStorage.getItem('token');
     try {
-      await axios.post('http://localhost:4000/api/credit-sale', {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/credit-sale`, {
         customer,
         amount: parseFloat(amount),
         note
