@@ -32,13 +32,21 @@ app.post('/api/register', async (req, res) => {
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   const user = await prisma.user.findUnique({ where: { email } });
+  console.log({user}, 2323);
   if (!user) return res.status(401).json({ error: "User not found" });
 
   const valid = await bcrypt.compare(password, user.password);
   if (!valid) return res.status(401).json({ error: "Invalid password" });
 
   const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '1d' });
-  res.json({ token });
+  res.json({
+  user: {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    },
+    token,
+  });
 });
 
 // Auth middleware
@@ -85,3 +93,6 @@ app.get('/api/credit-sale', async (req, res) => {
 
 
 app.listen(4000, () => console.log("Backend running on http://localhost:4000"));
+
+
+

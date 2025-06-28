@@ -3,11 +3,8 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div>
-      <LogoutButton />
-        <Link href="/login">Login</Link>
-        <Link href="/credit-sale">Credit Sale</Link>
-        <Link href="/register">Register</Link>
-        <Link href="/all-credits">View All Credit Sales</Link>
+        <h1>Welcome to Fuel Station</h1>
+        <p>Manage your petrol pump operations efficiently.</p>
     </div>
   );
 }

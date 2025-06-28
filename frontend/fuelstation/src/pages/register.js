@@ -1,38 +1,87 @@
 import { useState } from 'react';
+import { TextField, Button, Typography, Box, Link } from '@mui/material';
+import { useRouter } from 'next/router';
 import axios from 'axios';
-import Link from 'next/link'; 
 
 export default function Register() {
+  const router = useRouter();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [role, setRole] = useState('employee');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
 
   async function handleRegister() {
     try {
-      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/register`, {
-        name, email, password, role
+      await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/register`, {
+        name,
+        email,
+        password,
+        role,
       });
-      alert("Registration successful. Now you can log in.");
+      alert('Registration successful! Please log in.');
+      router.push('/login');
     } catch (err) {
-        console.log(err);
-      alert("Registration failed: " + err.response?.data?.error || err.message);
+      console.error(err);
+      alert('Registration failed');
     }
   }
 
   return (
-    <div>
-      <h2>Register</h2>
-      <input placeholder="Name" onChange={e => setName(e.target.value)} /><br />
-      <input placeholder="Email" onChange={e => setEmail(e.target.value)} /><br />
-      <input placeholder="Password" type="password" onChange={e => setPassword(e.target.value)} /><br />
-      <select onChange={e => setRole(e.target.value)} value={role}>
-        <option value="employee">Employee</option>
-        <option value="maintainer">Maintainer</option>
-        <option value="owner">Owner</option>
-      </select><br />
-      <button onClick={handleRegister}>Register</button>
-      <Link href="/login">Login</Link>
-    </div>
+    <Box
+      sx={{
+        maxWidth: 400,
+        mx: 'auto',
+        mt: 8,
+        p: 4,
+        border: '1px solid #ccc',
+        borderRadius: 2,
+        boxShadow: 2,
+      }}
+    >
+      <Typography variant="h5" gutterBottom>Register</Typography>
+      
+      <TextField
+        label="Name"
+        fullWidth
+        margin="normal"
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <TextField
+        label="Email"
+        fullWidth
+        margin="normal"
+        onChange={(e) => setEmail(e.target.value)}
+      />
+
+      <TextField
+        label="Password"
+        type="password"
+        fullWidth
+        margin="normal"
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
+      <TextField
+        label="Role (e.g. owner, employee)"
+        fullWidth
+        margin="normal"
+        onChange={(e) => setRole(e.target.value)}
+      />
+
+      <Button
+        variant="contained"
+        color="primary"
+        fullWidth
+        onClick={handleRegister}
+        sx={{ mt: 2 }}
+      >
+        Register
+      </Button>
+
+      <Typography variant="body2" align="center" sx={{ mt: 2 }}>
+        Already have an account? <Link href="/login">Login</Link>
+      </Typography>
+    </Box>
   );
 }
