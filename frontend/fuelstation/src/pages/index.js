@@ -3,6 +3,7 @@ import {
   Box, Tabs, Tab, Typography, TextField, Grid, Button, Paper
 } from '@mui/material';
 import dayjs from 'dayjs';
+import PaymentsTab from '../../components/Payments'; 
 
 const machines = [
   {
@@ -200,7 +201,7 @@ const calculateDifference = () => {
 
       {/* Other Tabs Placeholder */}
       <TabPanel value={tabIndex} index={1}><Typography>Dip Calculation form here</Typography></TabPanel>
-      <TabPanel value={tabIndex} index={2}><Typography>Payment form here</Typography></TabPanel>
+      <TabPanel value={tabIndex} index={2}><PaymentsTab /></TabPanel>
       <TabPanel value={tabIndex} index={3}><Typography>Density Check form here</Typography></TabPanel>
         </Box>
 </Box>
