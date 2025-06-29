@@ -108,10 +108,10 @@ const calculateDifference = () => {
 
 
       <Tabs value={tabIndex} onChange={(e, newVal) => setTabIndex(newVal)} centered>
-        <Tab label="Nozzle Entry" />
-        <Tab label="Dip Calculation" />
+        <Tab label="Nozzle" />
+        {/* <Tab label="Dip Calculation" /> */}
         <Tab label="Payment" />
-        <Tab label="Density Check" />
+        {/* <Tab label="Density Check" /> */}
       </Tabs>
         {userName && (
   <h5 variant="subtitle1" mb={2}>
@@ -207,9 +207,9 @@ const calculateDifference = () => {
       </TabPanel>
 
       {/* Other Tabs Placeholder */}
-      <TabPanel value={tabIndex} index={1}><Typography>Dip Calculation form here</Typography></TabPanel>
-      <TabPanel value={tabIndex} index={2}><PaymentsTab /></TabPanel>
-      <TabPanel value={tabIndex} index={3}><Typography>Density Check form here</Typography></TabPanel>
+      {/* <TabPanel value={tabIndex} index={1}><Typography>Dip Calculation form here</Typography></TabPanel> */}
+      <TabPanel value={tabIndex} index={1}><PaymentsTab /></TabPanel>
+      {/* <TabPanel value={tabIndex} index={3}><Typography>Density Check form here</Typography></TabPanel> */}
         </Box>
 </Box>
   );
