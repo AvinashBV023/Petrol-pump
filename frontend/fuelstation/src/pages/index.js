@@ -38,12 +38,16 @@ export default function HomePage() {
   const [dateTime, setDateTime] = useState('');
   const [totalPetrol, setTotalPetrol] = useState(0);
   const [totalDiesel, setTotalDiesel] = useState(0);
+  const [userName, setUserName] = useState('');
+useEffect(() => {
+  const now = dayjs().format('YYYY-MM-DDTHH:mm');
+  setDateTime(now);
 
-
-  useEffect(() => {
-    const now = dayjs().format('YYYY-MM-DDTHH:mm');
-    setDateTime(now);
-  }, []);
+  const userData = localStorage.getItem('username');
+  if (userData && userData !== 'undefined') {
+    setUserName(userData);
+  }
+}, []);
 
   const handleChange = (e, machineId, nozzleNum, field) => {
     setFormData((prev) => ({
@@ -109,6 +113,11 @@ const calculateDifference = () => {
         <Tab label="Payment" />
         <Tab label="Density Check" />
       </Tabs>
+        {userName && (
+  <h5 variant="subtitle1" mb={2}>
+    Welcome, {userName}
+  </h5>
+)}
 
       <TabPanel value={tabIndex} index={0}>
         <Box maxWidth={300} mb={3}>
@@ -189,13 +198,11 @@ const calculateDifference = () => {
   Final Submit
 </Button>
 
-        {(totalPetrol > 0 || totalDiesel > 0) && (
   <Box mt={4} mb={16} p={2} sx={{ backgroundColor: '#f5f5f5', borderRadius: 2 }}>
     <Typography variant="h6">Total Volume Sold</Typography>
     <Typography>🟠 Petrol: <strong>{totalPetrol.toFixed(2)} L</strong></Typography>
     <Typography>🟤 Diesel: <strong>{totalDiesel.toFixed(2)} L</strong></Typography>
   </Box>
-)}
 
       </TabPanel>
 

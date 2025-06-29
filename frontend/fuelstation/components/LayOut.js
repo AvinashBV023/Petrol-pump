@@ -17,21 +17,12 @@ import { useEffect, useState } from 'react';
 
 export default function Layout({ children }) {
   const router = useRouter();
-  const [userName, setUserName] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const userData = localStorage.getItem('user');
-      if (userData && userData !== 'undefined') {
-        const user = JSON.parse(userData);
-        setUserName(user.name || user.email);
-      }
-    }
-  }, []);
+
 
   const handleLogout = () => {
     localStorage.removeItem('token');
