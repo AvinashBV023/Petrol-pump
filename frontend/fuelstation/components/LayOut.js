@@ -35,7 +35,7 @@ export default function Layout({ children }) {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem('username');
     router.push('/login');
   };
 
@@ -44,7 +44,7 @@ export default function Layout({ children }) {
 
   const menuItems = [
     { label: 'Home', path: '/' },
-    { label: 'Credit Sale', path: '/credit-sale' },
+    { label: 'Enter Credit Sale', path: '/credit-sale' },
     { label: 'All Credits', path: '/all-credits' },
     { label: 'Logout', action: handleLogout },
   ];

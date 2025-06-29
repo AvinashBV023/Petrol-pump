@@ -35,7 +35,7 @@ export default function CreditSale() {
 
   return (
     <Box>
-      <Typography variant="h5" gutterBottom>Record Credit Sale</Typography>
+      <Typography variant="h5" gutterBottom>Enter Credit Sale</Typography>
       <TextField label="Customer" fullWidth margin="normal" onChange={e => setCustomer(e.target.value)} />
       <TextField label="Amount" fullWidth margin="normal" onChange={e => setAmount(e.target.value)} />
       <TextField label="Note" fullWidth margin="normal" onChange={e => setNote(e.target.value)} />

@@ -1,10 +1,17 @@
-import LogoutButton from '../../components/LogoutButton';
-import Link from 'next/link';
+import { useState, useEffect } from 'react';
 export default function Home() {
+    const [userName, setUserName] = useState(null);
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const userData = localStorage.getItem('username');
+            if (userData && userData !== 'undefined') {
+                setUserName(userData);
+            }
+        }
+    }, []);
   return (
     <div>
-        <h1>Welcome to Fuel Station</h1>
-        <p>Manage your petrol pump operations efficiently.</p>
+        <h1>Welcome to Fuel Station{userName && `, ${userName}!`}</h1>
     </div>
   );
 }

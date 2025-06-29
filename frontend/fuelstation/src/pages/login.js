@@ -15,6 +15,8 @@ export default function Login() {
         password,
       });
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('username', res.data?.user?.name);
+      localStorage.setItem('email', res.data?.user?.email);
       alert('Login successful!');
       router.push('/');
     } catch {
